@@ -1144,12 +1144,14 @@ func (r *Remote) isSupportedRefSpec(refs []config.RefSpec, ar *packp.AdvRefs) er
 		return nil
 	}
 
-	if ar.Capabilities.Supports(capability.AllowReachableSHA1InWant) ||
-		ar.Capabilities.Supports(capability.AllowTipSHA1InWant) {
-		return nil
-	}
+	// When server does not say it is on protocol v2, the
+	// git CLI does not enforce capability support.
+	// if ar.Capabilities.Supports(capability.AllowReachableSHA1InWant) ||
+	// 	ar.Capabilities.Supports(capability.AllowTipSHA1InWant) {
+	return nil
+	// }
 
-	return ErrExactSHA1NotSupported
+	// return ErrExactSHA1NotSupported
 }
 
 func buildSidebandIfSupported(l *capability.List, reader io.Reader, p sideband.Progress) io.Reader {

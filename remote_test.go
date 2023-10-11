@@ -92,20 +92,20 @@ func (s *RemoteSuite) TestFetchExactSHA1(c *C) {
 	})
 }
 
-func (s *RemoteSuite) TestFetchExactSHA1_NotSoported(c *C) {
-	r := NewRemote(memory.NewStorage(), &config.RemoteConfig{
-		URLs: []string{s.GetBasicLocalRepositoryURL()},
-	})
+// func (s *RemoteSuite) TestFetchExactSHA1_NotSoported(c *C) {
+// 	r := NewRemote(memory.NewStorage(), &config.RemoteConfig{
+// 		URLs: []string{s.GetBasicLocalRepositoryURL()},
+// 	})
 
-	err := r.Fetch(&FetchOptions{
-		RefSpecs: []config.RefSpec{
-			config.RefSpec("35e85108805c84807bc66a02d91535e1e24b38b9:refs/heads/foo"),
-		},
-	})
+// 	err := r.Fetch(&FetchOptions{
+// 		RefSpecs: []config.RefSpec{
+// 			config.RefSpec("35e85108805c84807bc66a02d91535e1e24b38b9:refs/heads/foo"),
+// 		},
+// 	})
 
-	c.Assert(err, Equals, ErrExactSHA1NotSupported)
+// 	c.Assert(err, Equals, ErrExactSHA1NotSupported)
 
-}
+// }
 
 func (s *RemoteSuite) TestFetchWildcardTags(c *C) {
 	r := NewRemote(memory.NewStorage(), &config.RemoteConfig{
